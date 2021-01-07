@@ -1,0 +1,83 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+//    id "com.arenagod.gradle.MybatisGenerator" version "1.4"
+//    id 'cn.xinzhili.napp.autobuild'
+
+}
+
+sourceCompatibility = '11'
+
+ext {
+    set('springBootAdminVersion', "2.2.3")
+}
+
+dependencies {
+
+    compile 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    // - dev and ops tools
+    implementation 'org.springframework.boot:spring-boot-devtools'
+
+    compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: '1.2.3'
+
+    implementation 'org.springframework.integration:spring-integration-webflux'
+
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-spring-webflux:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+
+    implementation 'org.flywaydb:flyway-core'
+
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+
+    // text/xml
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+
+    // - web server and others helpers
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+//	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // - data handle and persistence
+    compile("org.mybatis:mybatis-typehandlers-jsr310:1.0.2")
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+
+    compile group: 'org.mybatis.dynamic-sql', name: 'mybatis-dynamic-sql', version: '1.2.1'
+
+
+    implementation 'org.postgresql:postgresql'
+
+
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//    runtimeOnly 'com.h2database:h2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //定时任务 scheduling-tasks
+    testImplementation 'org.awaitility:awaitility:3.1.2'
+    //thymeleaf模板
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    //登录拦截授权
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-test'
+
+    //actuator 应用系统的自省和监控的集成功能，可以对应用系统进行配置查看、相关功能统计等。
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // - unit test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+}

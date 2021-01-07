@@ -1,0 +1,3 @@
+rootProject.name = 'iFramework'
+include 'auto-plugin'
+include 'yuan-core'

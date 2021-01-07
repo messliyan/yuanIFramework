@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+//        classpath files("${rootDir}/plugin/build/libs/plugin-1.0.0.jar") // 依赖本地文件，需要将jar文件放到项目根目录
+        classpath files("plugin-1.0.0.jar") // 依赖本地文件，需要将jar文件放到项目根目录
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
