@@ -6,13 +6,34 @@ spring:
     multipart:
       max-file-size: 128KB
       max-request-size: 128KB
-      # 激活配置
+  application:
+    name: yuan-service
+  flyway:
+    enabled: false
+  datasource:
+    name: hikari
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-init-sql: "SET search_path TO ${pg-db.schema}"
+      connection-timeout: 30000
+      idle-timeout: 30000
+      minimum-idle: 5
+      maximum-pool-size: 20
+    # 激活配置
   profiles:
     active: dev
 # sql版本管理
-flyway:
-  enabled: false
-
+#flyway:
+#  enabled: false
+server:
+  port: 8050
+  error:
+    path: /error
+    include-binding-errors: always
+    include-exception: true
+    include-stacktrace: always
+    include-message: always
 pg-db:
   schema: s_yuan
 
@@ -58,20 +79,6 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/dev
     username: postgres
     password: 123456
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      connection-timeout: 30000
-      idle-timeout: 30000
-      minimum-idle: 5
-      maximum-pool-size: 20
-      pool-prepared-statements: true
-      max-open-prepared-statements: 100
-      connection-init-sql: "SET search_path TO ${pg-db.schema}"
-server:
-    port: 9099
-
-
 
 ---
 spring:

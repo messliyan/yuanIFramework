@@ -1,10 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.0.RELEASE'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
-//    id "com.arenagod.gradle.MybatisGenerator" version "1.4"
-//    id 'cn.xinzhili.napp.autobuild'
-
+    id 'yuan.auto.plugin'
 }
 
 sourceCompatibility = '11'

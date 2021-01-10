@@ -1,3 +1,6 @@
-rootProject.name = 'iFramework'
-include 'auto-plugin'
-include 'yuan-core'
+include ('yuan-core')
+
+include(':auto-plugin')
+
+project(':auto-plugin').projectDir = new File(settingsDir, './auto-plugin')
+project(':auto-plugin').buildFileName = 'auto.gradle'

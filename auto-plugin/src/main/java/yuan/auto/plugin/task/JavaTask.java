@@ -1,4 +1,4 @@
-package net.devwiki.plugin.task;
+package yuan.auto.plugin.task;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
@@ -9,11 +9,11 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class JavaTask extends DefaultTask {
 
-    public static final String NAME = "JavaFirst";
+    public static final String NAME = "gen";
 
     public JavaTask() {
-        setGroup("devwiki java");
-        setDescription("devwiki groovy task");
+        setGroup("auto-yuan");
+        setDescription("代码生成");
     }
 
     @TaskAction

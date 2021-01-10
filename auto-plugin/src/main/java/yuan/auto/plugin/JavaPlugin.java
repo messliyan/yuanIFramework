@@ -1,9 +1,7 @@
-package net.devwiki.plugin;
-
-import net.devwiki.plugin.task.JavaTask;
-
+package yuan.auto.plugin;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import yuan.auto.plugin.task.JavaTask;
 
 /**
  * 用Java语言编写Plugin

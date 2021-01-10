@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @Slf4j
@@ -22,20 +24,21 @@ public class FlywayConfig implements WebFluxConfigurer {
   @Autowired
   private DataSource dataSource;
 
-//  @Bean
-//  public void initEnviroment() {
-////        new DriverDataSource()
-////        DriverDataSource.DriverType.POSTGRESQL
-//    try {
-//      FluentConfiguration configuration = getFlywayConfiguration();
-//      configuration.baselineOnMigrate(true);
-//      configuration.baselineDescription("INIT START");
-//      Flyway flyway = configuration.load();
-//      flyway.migrate();
-//    } catch (FlywayException e) {
-//      log.warn(" flyway 初始化环境失败 , {}", e.getMessage());
-//    }
-//  }
+  @Bean
+  public void initEnviroment() {
+//        new DriverDataSource()
+//        DriverDataSource.DriverType.POSTGRESQL
+    try {
+      FluentConfiguration configuration = getFlywayConfiguration();
+
+      configuration.baselineOnMigrate(true);
+      configuration.baselineDescription("INIT START");
+      Flyway flyway = configuration.load();
+      flyway.migrate();
+    } catch (FlywayException e) {
+      log.warn(" flyway 初始化环境失败 , {}", e.getMessage());
+    }
+  }
 
   @Bean
   public void upgradeEnviroment() {
@@ -58,4 +61,11 @@ public class FlywayConfig implements WebFluxConfigurer {
     return configuration;
   }
 
+  @Bean
+  SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
+    return http
+            .csrf(it -> it.disable())
+            .httpBasic(it -> it.disable())
+            .build();
+  }
 }

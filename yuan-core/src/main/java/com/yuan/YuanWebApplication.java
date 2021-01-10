@@ -8,8 +8,6 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 
 
 @SpringBootApplication
-@Slf4j
-@EnableWebFlux
 public class YuanWebApplication {
 
   public static void main(String[] args)  {
