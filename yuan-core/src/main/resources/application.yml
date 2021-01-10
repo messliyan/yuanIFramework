@@ -27,7 +27,7 @@ spring:
 #flyway:
 #  enabled: false
 server:
-  port: 8050
+  port: 9900
   error:
     path: /error
     include-binding-errors: always

@@ -1,12 +1,12 @@
-AGENT_LABEL = "MASTER"
+AGENT_LABEL = "main"
 pipeline {
     agent {
         label AGENT_LABEL
     }
     environment {
-        CURRENT_PRJ_NAME = "apis-service"
-        RUN_PORT = 8000
-        ALIYUN_DOCKER_REGISTRY_LOGIN = credentials('aliyun-docker-registry-login-credential')
+        CURRENT_PRJ_NAME = "yuan-service"
+        RUN_PORT = 9900
+        ALIYUN_DOCKER_REGISTRY_LOGIN = credentials('docker-aliyun-jiiabin')
         YX_901_DOCKER_HARBOR = credentials('yx-901-harbor')
 
 //        PUBLISH_TASK = ":publish"
@@ -37,19 +37,7 @@ pipeline {
         stage('prepare') {
             steps {
                 script {
-
-                    if (env.BRANCH_NAME == 'shanxi_dev') {
-                        env.TARGET_HOST_IP = "192.168.1.100"
-
-                        env.DOCKER_REGISTRY_HOST = "registry.cn-beijing.aliyuncs.com"
-                        env.DOCKER_REGISTRY_URL = "https://${DOCKER_REGISTRY_HOST}"
-                        env.DOCKER_REGISTRY_PREFIX = "${DOCKER_REGISTRY_HOST}"
-                        env.DOCKER_REGISTRY_IMAGE_TARGET = "${DOCKER_REGISTRY_PREFIX}/xzl-dev/${CURRENT_PRJ_NAME}"
-                        env.DOCKER_JRE_IMAGE = "${DOCKER_REGISTRY_PREFIX}/corp/jre:11u8"
-                        env.EUREKA_URL = "http://192.168.1.100:7990/eureka/"
-
-                        AGENT_LABEL = "SX_DEV"
-                    } else if (env.BRANCH_NAME == 'dev') {
+                    if (env.BRANCH_NAME == 'dev') {
                         env.TARGET_HOST_IP = "172.16.10.129"
 
                         // env.DOCKER_REGISTRY_HOST = "registry.cn-beijing.aliyuncs.com"
@@ -59,17 +47,6 @@ pipeline {
                         env.DOCKER_REGISTRY_IMAGE_TARGET = "${DOCKER_REGISTRY_PREFIX}/n-dev/${CURRENT_PRJ_NAME}"
                         env.DOCKER_JRE_IMAGE = "${DOCKER_REGISTRY_PREFIX}/corp/jre:11u8"
                         env.EUREKA_URL = "http://172.16.10.129:7990/eureka/"
-
-                        AGENT_LABEL = "YX_DEV"
-                    } else if (env.BRANCH_NAME == 'test') {
-                        env.TARGET_HOST_IP = "172.16.10.128"
-
-                        env.DOCKER_REGISTRY_HOST = "172.16.10.57"
-                        env.DOCKER_REGISTRY_URL = "https://${DOCKER_REGISTRY_HOST}"
-                        env.DOCKER_REGISTRY_PREFIX = "${DOCKER_REGISTRY_HOST}"
-                        env.DOCKER_REGISTRY_IMAGE_TARGET = "${DOCKER_REGISTRY_PREFIX}/xzl-test/${CURRENT_PRJ_NAME}"
-                        env.DOCKER_JRE_IMAGE = "${DOCKER_REGISTRY_PREFIX}/corp/jre:11u8"
-                        env.EUREKA_URL = "http://172.16.10.128:7990/eureka/"
 
                         AGENT_LABEL = "YX_DEV"
                     }  else {
@@ -119,7 +96,7 @@ pipeline {
                     else
                         echo 'no publish task'
                     fi
-                    
+
                     if gradle tasks --all | grep "upgradeVersion"
                     then
                         echo 'upgradeVersion artifact to db'
