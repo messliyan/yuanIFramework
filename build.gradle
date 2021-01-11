@@ -1,14 +1,72 @@
 buildscript {
     repositories {
-        mavenCentral()
+        def JCENTER_URL = 'https://maven.aliyun.com/repository/jcenter'
+        def GOOGLE_URL = 'https://maven.aliyun.com/repository/google'
+        def NEXUS_URL = 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+        all { ArtifactRepository repo ->
+            if (repo instanceof MavenArtifactRepository) {
+                def url = repo.url.toString()
+                if (url.startsWith('https://jcenter.bintray.com/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $JCENTER_URL."
+                    println("buildscript ${repo.url} replaced by $JCENTER_URL.")
+                    remove repo
+                } else if (url.startsWith('https://dl.google.com/dl/android/maven2/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $GOOGLE_URL."
+                    println("buildscript ${repo.url} replaced by $GOOGLE_URL.")
+                    remove repo
+                } else if (url.startsWith('https://repo1.maven.org/maven2')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $REPOSITORY_URL."
+                    println("buildscript ${repo.url} replaced by $REPOSITORY_URL.")
+                    remove repo
+                }
+            }
+        }
+        jcenter {
+            url JCENTER_URL
+        }
+        google {
+            url GOOGLE_URL
+        }
+        maven {
+            url NEXUS_URL
+        }
     }
-
-
     dependencies {
-        classpath files('auto-plugin/build/libs/auto-plugin.jar') // 依赖本地文件，需要将jar文件放到项目根目录
+        classpath "com.yuan:auto-service:0.0.1"
     }
 }
-
+repositories {
+    def JCENTER_URL = 'https://maven.aliyun.com/repository/jcenter'
+    def GOOGLE_URL = 'https://maven.aliyun.com/repository/google'
+    def NEXUS_URL = 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+    all { ArtifactRepository repo ->
+        if (repo instanceof MavenArtifactRepository) {
+            def url = repo.url.toString()
+            if (url.startsWith('https://jcenter.bintray.com/')) {
+                project.logger.lifecycle "Repository ${repo.url} replaced by $JCENTER_URL."
+                println("buildscript ${repo.url} replaced by $JCENTER_URL.")
+                remove repo
+            } else if (url.startsWith('https://dl.google.com/dl/android/maven2/')) {
+                project.logger.lifecycle "Repository ${repo.url} replaced by $GOOGLE_URL."
+                println("buildscript ${repo.url} replaced by $GOOGLE_URL.")
+                remove repo
+            } else if (url.startsWith('https://repo1.maven.org/maven2')) {
+                project.logger.lifecycle "Repository ${repo.url} replaced by $REPOSITORY_URL."
+                println("buildscript ${repo.url} replaced by $REPOSITORY_URL.")
+                remove repo
+            }
+        }
+    }
+    jcenter {
+        url JCENTER_URL
+    }
+    google {
+        url GOOGLE_URL
+    }
+    maven {
+        url NEXUS_URL
+    }
+}
 allprojects {
     repositories {
         mavenCentral()

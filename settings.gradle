@@ -1,6 +1,4 @@
-include ('yuan-core')
+include(':yuan-core')
 
-include(':auto-plugin')
-
-project(':auto-plugin').projectDir = new File(settingsDir, './auto-plugin')
-project(':auto-plugin').buildFileName = 'auto.gradle'
+project(':yuan-core').projectDir = new File(settingsDir, './yuan-core')
+project(':yuan-core').buildFileName = 'core.gradle'
