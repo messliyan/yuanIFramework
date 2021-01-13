@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        label AGENT_LABEL
-    }
     stages {
         stage('prepare') {
             steps {
