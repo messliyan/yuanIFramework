@@ -1,10 +1,15 @@
+AGENT_LABEL = "MAIN"
 pipeline {
+    agent {
+        label AGENT_LABEL
+    }
     stages {
         stage('prepare') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'main') {
                        sh 'echo "开始构建当前main分支!!!"'
+                        AGENT_LABEL = "MAIN"
                     } else {
                         sh 'echo "当前分支暂未支持流水线作业!!!" && exit 1'
                     }
@@ -22,7 +27,9 @@ pipeline {
         }
 
         stage('build') {
-
+            agent {
+                label AGENT_LABEL as String
+            }
             steps {
                 sh 'gradle -Dorg.gradle.daemon=false clean'
                 sh '''
@@ -35,6 +42,9 @@ pipeline {
         }
 
         stage('deploy') {
+            agent {
+              label AGENT_LABEL as String
+            }
             steps {
                 echo " ->（4）部署 Docker 镜像到目标服务器"
             }
