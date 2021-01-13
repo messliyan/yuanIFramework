@@ -64,8 +64,8 @@ public class FlywayConfig implements WebFluxConfigurer {
   @Bean
   SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) {
     return http
-            .csrf(it -> it.disable())
-            .httpBasic(it -> it.disable())
-            .build();
+        .csrf(it -> it.disable())
+        .httpBasic(it -> it.disable())
+        .build();
   }
 }

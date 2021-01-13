@@ -34,7 +34,7 @@ public class IntArrayTypeHandler extends BaseTypeHandler<Integer[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Integer[])outputArray.getArray();
+    return (Integer[]) outputArray.getArray();
   }
 
   @Override
@@ -44,7 +44,7 @@ public class IntArrayTypeHandler extends BaseTypeHandler<Integer[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Integer[])outputArray.getArray();
+    return (Integer[]) outputArray.getArray();
   }
 
   @Override
@@ -54,6 +54,6 @@ public class IntArrayTypeHandler extends BaseTypeHandler<Integer[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Integer[])outputArray.getArray();
+    return (Integer[]) outputArray.getArray();
   }
 }

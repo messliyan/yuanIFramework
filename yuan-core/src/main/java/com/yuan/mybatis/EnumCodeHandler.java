@@ -4,17 +4,15 @@ package com.yuan.mybatis;
 import com.yuan.Enum.CodeEnum;
 import com.yuan.Enum.IntCodeEnum;
 import com.yuan.Enum.StringCodeEnum;
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
 
 /**
- * 数据类型转换
- * 数据库类型 <==> Java 枚举类型
+ * 数据类型转换 数据库类型 <==> Java 枚举类型
  */
 public class EnumCodeHandler<E extends Enum<E>>
     extends BaseTypeHandler<E> {

@@ -1,7 +1,6 @@
 package com.yuan.mybatis;
 
 
-
 import java.sql.Array;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -36,7 +35,7 @@ public class BigIntArrayTypeHandler extends BaseTypeHandler<Long[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Long[])outputArray.getArray();
+    return (Long[]) outputArray.getArray();
   }
 
   @Override
@@ -46,7 +45,7 @@ public class BigIntArrayTypeHandler extends BaseTypeHandler<Long[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Long[])outputArray.getArray();
+    return (Long[]) outputArray.getArray();
   }
 
   @Override
@@ -56,6 +55,6 @@ public class BigIntArrayTypeHandler extends BaseTypeHandler<Long[]> {
     if (outputArray == null) {
       return null;
     }
-    return (Long[])outputArray.getArray();
+    return (Long[]) outputArray.getArray();
   }
 }

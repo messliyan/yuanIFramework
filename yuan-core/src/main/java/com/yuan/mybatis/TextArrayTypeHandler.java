@@ -33,7 +33,7 @@ public class TextArrayTypeHandler extends BaseTypeHandler<String[]> {
     if (outputArray == null) {
       return null;
     }
-    return (String[])outputArray.getArray();
+    return (String[]) outputArray.getArray();
   }
 
   @Override
@@ -43,7 +43,7 @@ public class TextArrayTypeHandler extends BaseTypeHandler<String[]> {
     if (outputArray == null) {
       return null;
     }
-    return (String[])outputArray.getArray();
+    return (String[]) outputArray.getArray();
   }
 
   @Override
@@ -53,6 +53,6 @@ public class TextArrayTypeHandler extends BaseTypeHandler<String[]> {
     if (outputArray == null) {
       return null;
     }
-    return (String[])outputArray.getArray();
+    return (String[]) outputArray.getArray();
   }
 }
