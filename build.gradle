@@ -30,7 +30,7 @@ buildscript {
         maven {
             url NEXUS_URL
         }
-        mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath "com.yuan:auto-service:0.0.1"
