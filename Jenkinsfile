@@ -3,9 +3,7 @@ pipeline {
         label 'master'
    }
   options {
-        buildDiscarder(logRotator(numToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '5'))
         timeout(time: 1, unit: 'MINUTES')
-        disableConcurrentBuilds()
    }
   stages {
         stage('prepare') {
