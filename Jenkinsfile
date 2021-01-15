@@ -1,15 +1,12 @@
 pipeline {
   agent {
         label 'master'
-    }
+   }
   options {
         buildDiscarder(logRotator(numToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '5'))
         timeout(time: 12, unit: 'MINUTES')
         disableConcurrentBuilds()
-          }
-  agent {
-          label 'main'
-         }
+   }
   stages {
         stage('prepare') {
             steps {
