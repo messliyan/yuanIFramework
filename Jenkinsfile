@@ -33,6 +33,7 @@ pipeline {
         stage('build') {
 
             steps {
+                sh 'gradle'
                 sh 'gradle -Dorg.gradle.daemon=false clean'
                 sh '''
                     echo " ->（1）构建打包 (Fat Jar)"
