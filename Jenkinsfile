@@ -4,7 +4,7 @@ pipeline {
    }
   options {
         buildDiscarder(logRotator(numToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '5'))
-        timeout(time: 12, unit: 'MINUTES')
+        timeout(time: 1, unit: 'MINUTES')
         disableConcurrentBuilds()
    }
   stages {
