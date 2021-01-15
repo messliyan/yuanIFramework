@@ -1,7 +1,7 @@
 pipeline {
   agent any
   options {
-        timeout(time: 1555, unit: 'MINUTES')
+        timeout(time: 15, unit: 'MINUTES')
    }
    tools {
            gradle "gradle"
