@@ -33,7 +33,7 @@ pipeline {
         stage('build') {
 
             steps {
-                sh 'gradle'
+                sh 'gradle -v'
                 sh 'gradle -Dorg.gradle.daemon=false clean'
                 sh '''
                   if gradle tasks --all | grep "publishToMavenLocal"
