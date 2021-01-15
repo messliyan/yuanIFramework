@@ -3,6 +3,10 @@ pipeline {
   options {
         timeout(time: 1, unit: 'MINUTES')
    }
+   tools {
+           gradle "gradle"
+           jdk "jdk"
+   }
   stages {
         stage('prepare') {
             steps {
