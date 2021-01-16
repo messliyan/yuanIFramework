@@ -10,10 +10,7 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.postgresql.util.PGobject;
 
-/**
- * @author daqiang
- * @date 2020/5/28 7:04 下午
- **/
+
 @Slf4j
 public class SubjectJsonbTypeHandler extends BaseTypeHandler<String> {
 

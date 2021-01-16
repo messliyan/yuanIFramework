@@ -12,10 +12,6 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 
-/**
- * @author daqiang
- * @date 2020/6/18 7:49 下午
- **/
 @MappedJdbcTypes(JdbcType.OTHER)
 @MappedTypes(Long[].class)
 public class BigIntArrayTypeHandler extends BaseTypeHandler<Long[]> {

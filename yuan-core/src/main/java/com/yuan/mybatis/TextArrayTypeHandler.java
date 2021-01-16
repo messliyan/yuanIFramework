@@ -11,9 +11,6 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 
-/**
- * @author Manni Wood
- */
 @MappedJdbcTypes(JdbcType.OTHER)
 @MappedTypes(String[].class)
 public class TextArrayTypeHandler extends BaseTypeHandler<String[]> {

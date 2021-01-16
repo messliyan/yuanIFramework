@@ -12,10 +12,6 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.postgresql.util.PGobject;
 
-/**
- * @author daqiang
- * @date 2020/8/25 18:54
- **/
 public class JsonTypeHandler<T> extends BaseTypeHandler<T> {
 
   private static final ObjectMapper mapper = new ObjectMapper();

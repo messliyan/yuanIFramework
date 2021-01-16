@@ -3,13 +3,10 @@
   <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
     <encoder>
       <pattern>
-        %yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%green(%logger:%line) ||
-        %(%boundedMsg%n)
+        %yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%green(%logger:%line)
       </pattern>
     </encoder>
   </appender>
-  <conversionRule conversionWord="boundedMsg"
-    converterClass="com.yuan.config.logback.LongMessagesConverter"/>
 
   <root level="INFO">
     <appender-ref ref="STDOUT"/>

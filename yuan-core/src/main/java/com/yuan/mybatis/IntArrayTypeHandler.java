@@ -11,10 +11,7 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 
-/**
- * @author daqiang
- * @date 2020/9/11 10:33
- **/
+
 @MappedJdbcTypes(JdbcType.OTHER)
 @MappedTypes(Integer[].class)
 public class IntArrayTypeHandler extends BaseTypeHandler<Integer[]> {

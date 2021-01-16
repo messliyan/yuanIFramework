@@ -1,13 +1,6 @@
 package com.yuan.mybatis;
 
-/**
- * The exception thrown when a code retrieved from DB does not have a corresponding definition in
- * this application.
- * <p>
- * Created on 15-9-3.
- *
- * @author gdong
- */
+
 public class CodeNotDefinedException extends RuntimeException {
 
   private static final long serialVersionUID = 1L;
