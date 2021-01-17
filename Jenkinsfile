@@ -40,6 +40,7 @@ pipeline {
                     gradle -Dorg.gradle.daemon=false build -x compileTestJava
                 '''
                 sh '''
+                    docker image rmi --force yuan/framework/image || true
                     echo " ->（2）构建Docker 镜像"
                     docker build \
                      -t yuan/framework/image \
@@ -58,8 +59,7 @@ pipeline {
                             writeFile file: "yuan_iFramework-pre-deploy.sh", text: '#!/bin/bash \n ' +
                                     'echo " -> （4.1）尝试清理原有运行资源" \n ' +
                                     'docker stop yuan/framework/container || true \n' +
-                                    'docker container rm -f yuan/framework/container || true \n' +
-                                    'docker image rmi --force yuan/framework/image || true \n'
+                                    'docker container rm -f yuan/framework/container || true \n'
 
                             sh 'bash yuan_iFramework-pre-deploy.sh'
                         } catch (exc) {
