@@ -37,7 +37,7 @@ public class FileUploadController {
    * @date 2020-09-30 16:28:57 16:28
    * @return java.lang.String
    */
-  @GetMapping("/fileUpload")
+  @GetMapping("/files/fileUpload")
   public String listUploadedFiles(Model model) throws IOException {
 
     model.addAttribute("files", storageService.loadAll().map(
@@ -73,7 +73,7 @@ public class FileUploadController {
    * @date 2020-09-30 16:28:57 16:28
    * @return java.lang.String
    */
-  @PostMapping("/")
+  @PostMapping("/files")
   public String handleFileUpload(@RequestParam("file") MultipartFile file,
       RedirectAttributes redirectAttributes) {
 
