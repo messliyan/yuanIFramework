@@ -42,7 +42,7 @@ pipeline {
                 sh '''
                     echo " ->（2）构建Docker 镜像"
                     docker build \
-                     -t yuan_iFramework_image \
+                     -t yuan/iFramework/image \
                      ${WORKSPACE}
                 '''
                  sh 'echo "（3）Docker 镜像上传入库"'
@@ -57,9 +57,9 @@ pipeline {
                         try {
                             writeFile file: "yuan_iFramework-pre-deploy.sh", text: '#!/bin/bash \n ' +
                                     'echo " -> （4.1）尝试清理原有运行资源" \n ' +
-                                    'docker stop yuan_iFramework_container || true \n' +
-                                    'docker container rm -f yuan_iFramework_container || true \n' +
-                                    'docker image rmi --force yuan_iFramework_image || true \n'
+                                    'docker stop yuan/iFramework/container || true \n' +
+                                    'docker container rm -f yuan/iFramework/container || true \n' +
+                                    'docker image rmi --force yuan/iFramework/image || true \n'
 
                             sh 'bash yuan_iFramework-pre-deploy.sh'
                         } catch (exc) {
@@ -71,7 +71,7 @@ pipeline {
                                     'docker run --log-opt max-size=10m --log-opt max-file=5 \\\n' +
                                     '-d --restart=always  \\\n' +
                                     '-p 9900:9900 \\\n' +
-                                    '--name yuan_iFramework_container yuan_iFramework_image'
+                                    '--name yuan/iFramework/container yuan/iFramework/image'
                              sh 'bash yuan_iFramework-deploy.sh'
                         }
                     }
