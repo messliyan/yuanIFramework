@@ -42,7 +42,8 @@ pipeline {
                 sh '''
                     echo " ->（2）构建Docker 镜像"
                     docker build \
-                     -t yuan_iFramework_image
+                     -t yuan_iFramework_image \
+                     ${WORKSPACE}
                 '''
                  sh 'echo "（3）Docker 镜像上传入库"'
             }
