@@ -58,8 +58,8 @@ pipeline {
                         try {
                             writeFile file: "yuan_iFramework-pre-deploy.sh", text: '#!/bin/bash \n ' +
                                     'echo " -> （4.1）尝试清理原有运行资源" \n ' +
-                                    'docker stop yuan/framework/container || true \n' +
-                                    'docker container rm -f yuan/framework/container || true \n'
+                                    'docker stop yuan-framework-container || true \n' +
+                                    'docker container rm -f yuan-framework-container || true \n'
 
                             sh 'bash yuan_iFramework-pre-deploy.sh'
                         } catch (exc) {
@@ -71,7 +71,7 @@ pipeline {
                                     'docker run --log-opt max-size=10m --log-opt max-file=5 \\\n' +
                                     '-d --restart=always  \\\n' +
                                     '-p 9900:9900 \\\n' +
-                                    '--name yuan/framework/container yuan/framework/image'
+                                    '--name yyuan-framework-container yuan/framework/image'
                              sh 'bash yuan_iFramework-deploy.sh'
                         }
                     }
