@@ -39,7 +39,11 @@ pipeline {
                     echo " ->（1）构建打包 (Fat Jar)"
                     gradle -Dorg.gradle.daemon=false build -x compileTestJava
                 '''
-                 sh 'echo "（2）构建Docker 镜像"'
+                sh '''
+                    echo " ->（2）构建Docker 镜像"
+                    docker build \
+                     -t yuan_iFramework_image
+                '''
                  sh 'echo "（3）Docker 镜像上传入库"'
             }
         }
@@ -47,7 +51,29 @@ pipeline {
         stage('deploy') {
 
             steps {
-                echo " ->（4）部署 Docker 镜像到目标服务器"
+                echo " ->（4）部署 Docker 镜像"
+                script {
+                        try {
+                            writeFile file: "yuan_iFramework-pre-deploy.sh", text: '#!/bin/bash \n ' +
+                                    'echo " -> （4.1）尝试清理原有运行资源" \n ' +
+                                    'docker stop yuan_iFramework_container || true \n' +
+                                    'docker container rm -f yuan_iFramework_container || true \n' +
+                                    'docker image rmi --force yuan_iFramework_image || true \n'
+
+                            sh 'bash yuan_iFramework-pre-deploy.sh'
+                        } catch (exc) {
+                            sh 'echo "首次运行在该机器，所以清理失败!"'
+                            //throw
+                        } finally {
+                            writeFile file: "yuan_iFramework-deploy.sh", text: '#!/bin/bash \n' +
+                                    'echo " -> （4.2） 部署 Docker 镜像到目标服务器"\n' +
+                                    'docker run --log-opt max-size=10m --log-opt max-file=5 \\\n' +
+                                    '-d --restart=always  \\\n' +
+                                    '-p 9900:9900 \\\n' +
+                                    '--name yuan_iFramework_container yuan_iFramework_image'
+                             sh 'bash yuan_iFramework-deploy.sh'
+                        }
+                    }
             }
         }
 
